@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transactions",
+  "info": {
+    "singularName": "transaction",
+    "pluralName": "transactions",
+    "displayName": "Transaction"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "transaction_code": {
+      "type": "uid",
+      "required": false
+    },
+    "service": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::service.service",
+      "inversedBy": "transactions"
+    },
+    "price_paid": {
+      "type": "decimal",
+      "required": true
+    },
+    "transaction_status": {
+      "type": "enumeration",
+      "enum": [
+        "Pending",
+        "Paid",
+        "Cancelled"
+      ]
+    },
+    "payment_method": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Cash",
+        "ABA",
+        "Wing",
+        "PayWay"
+      ]
+    },
+    "scheduled_time": {
+      "type": "datetime",
+      "required": true
+    },
+    "booking": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::booking.booking",
+      "mappedBy": "transaction"
+    },
+    "paid_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "transactions"
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": false
+    },
+    "start_price": {
+      "type": "decimal",
+      "required": true
+    },
+    "discount": {
+      "type": "decimal"
+    },
+    "duration": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "service_reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service-review.service-review",
+      "mappedBy": "service"
+    },
+    "transactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::transaction.transaction",
+      "mappedBy": "service"
+    },
+    "bookings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::booking.booking",
+      "mappedBy": "service"
+    },
+    "isPopular": {
+      "type": "boolean",
+      "default": false
+    },
+    "isTopRated": {
+      "type": "boolean",
+      "default": false
+    },
+    "isHotDeal": {
+      "type": "boolean",
+      "default": false
+    },
+    "averageRating": {
+      "type": "decimal",
+      "default": 0
+    },
+    "type_of_service": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::type-of-service.type-of-service",
+      "inversedBy": "services"
+    },
+    "favorited_by": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "favorites"
+    },
+    "merchants": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "services"
+    }
+  }
+}

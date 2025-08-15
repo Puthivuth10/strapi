@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "type_of_services",
+  "info": {
+    "singularName": "type-of-service",
+    "pluralName": "type-of-services",
+    "displayName": "TypeOfService"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "services": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service",
+      "mappedBy": "type_of_service"
+    }
+  }
+}
